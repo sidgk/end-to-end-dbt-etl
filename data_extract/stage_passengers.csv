@@ -1,0 +1,11 @@
+age,bookingid,firstName,lastName,passengerid,type
+34,BKG-0001,Alice,Mayer,PAX-900,adult
+36,BKG-0001,Bob,Mayer,PAX-901,adult
+28,BKG-0002,Carlos,Lopez,PAX-910,adult
+40,BKG-0003,David,Smith,PAX-920,adult
+10,BKG-0003,Ella,Smith,PAX-921,child
+32,BKG-0004,Fiona,Brown,PAX-930,adult
+45,BKG-0005,George,Adams,PAX-940,adult
+30,BKG-0006,Hannah,White,PAX-950,adult
+29,BKG-0007,Ivan,Petrov,PAX-960,adult
+27,BKG-0008,Julia,Nguyen,PAX-970,adult
