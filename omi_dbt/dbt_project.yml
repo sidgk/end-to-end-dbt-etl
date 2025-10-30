@@ -4,6 +4,10 @@ config-version: 2
 
 profile: omi_dbt
 
+# dbt_expectations package expects a timezone variable to be defined globally in your dbt_project.yml or dbt_project context.
+vars:
+  dbt_date:time_zone: "Europe/Berlin"
+
 model-paths: ["models"]
 analysis-paths: ["analyses"]
 test-paths: ["tests"]

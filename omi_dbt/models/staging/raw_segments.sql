@@ -5,13 +5,12 @@
 ) }}
 
 SELECT
-    segmentid,
-    bookingid,
-    carriername,
+    segmentid AS segment_id,
+    bookingid AS booking_id,
+    carriername AS carrier_name,
     departuredatetime,
     arrivaldatetime,
     travelmode,
     origin,
     destination
 FROM {{ source('omio', 'segments') }}
-WHERE DATE(departuredatetime) = DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)

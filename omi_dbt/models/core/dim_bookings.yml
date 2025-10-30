@@ -1,0 +1,47 @@
+version: 2
+
+models:
+  - name: dim_bookings
+    description: >
+      Dimension table for bookings data. 
+      Contains enriched booking-level information built incrementally from `raw_bookings`.
+    tests:
+      - dbt_expectations.expect_row_values_to_have_recent_data:
+          datepart: hour
+          interval: 12
+          column_name: dwh_load_time
+
+    config:
+      materialized: incremental
+      unique_key: bookingid
+      tags: ['core', 'dim', 'incremental']
+
+    columns:
+      - name: booking_id
+        description: "Unique identifier for each booking."
+        tests:
+          - unique
+          - not_null
+
+      - name: created_at
+        description: "Timestamp when the booking was created."
+        tests:
+          - not_null
+
+      - name: updated_at
+        description: "Timestamp when the booking was last updated."
+
+      - name: partner_id_offer
+        description: "Partner ID for the offer linked to this booking."
+
+      - name: booking_price
+        description: "Aggregated total amount for the booking."
+      
+      - name: booking_currency
+        description: "Aggregated total amount for the booking."
+        tests:
+          - accepted_values:
+              values: ['EUR', 'USD', 'GBP', 'CHF', 'DKK', 'SEK', 'NOK', 'PLN', 'CZK']
+
+      - name: dwh_load_time
+        description: "Timestamp when this record was loaded into the data warehouse."

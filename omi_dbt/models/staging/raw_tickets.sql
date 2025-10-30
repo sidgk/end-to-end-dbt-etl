@@ -5,12 +5,11 @@
 ) }}
 
 SELECT
-    ticketid,
-    bookingid,
-    bookingPrice,
-    bookingCurrency,
-    vendorCode,
-    issuedAt,
+    ticketid AS ticket_id,
+    bookingid AS booking_id,
+    bookingPrice AS booking_price,
+    bookingCurrency AS booking_currency,
+    vendorCode AS vendor_code,
+    issuedAt as issued_at,
     fareClass
 FROM {{ source('omio', 'tickets') }}
-WHERE DATE(issuedAt) = DATE_SUB(CURRENT_DATE(), INTERVAL 1 DAY)
