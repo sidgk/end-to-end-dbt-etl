@@ -6,4 +6,4 @@ SELECT
     INITCAP(lastName) AS last_name,
     type AS passenger_type,
     age
-FROM {{ source('omio', 'passengers') }}
+FROM {{ source('omio', 'stage_passengers') }}

@@ -12,4 +12,4 @@ SELECT
     vendorCode AS vendor_code,
     issuedAt as issued_at,
     fareClass
-FROM {{ source('omio', 'tickets') }}
+FROM {{ source('omio', 'stage_tickets') }}

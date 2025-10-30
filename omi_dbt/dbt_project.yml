@@ -21,7 +21,7 @@ clean-targets: ["target", "dbt_packages"]
 models:
   omi_dbt:
     +database: inspiring-ring-382618
-    +schema: omio  # base logical schema (dataset)
+    +schema: omio_stage  # base logical schema (dataset)
     staging:
       +schema: raw
       +materialized: table

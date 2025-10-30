@@ -1,11 +1,11 @@
 bookingid,createdAt,dwh_load_time,partnerIdOffer,raw_meta,totalPrice,updatedAt,userSelectedCurrency
-BKG-0001,2025-10-28T08:23:11Z,2025-10-30 12:47:21,PART-ALPHA,"{""source"": ""web"", ""device"": ""mobile""}",199.9,2025-10-28T09:00:00Z,EUR
-BKG-0002,2025-10-27T14:11:05Z,2025-10-30 12:47:21,PART-BETA,"{""source"": ""api"", ""device"": ""backend""}",45.0,2025-10-27T14:11:05Z,EUR
-BKG-0003,2025-10-25T09:30:00Z,2025-10-30 12:47:21,PART-GAMMA,"{""source"": ""web"", ""device"": ""desktop""}",320.75,2025-10-25T10:00:00Z,USD
-BKG-0004,2025-10-24T12:00:00Z,2025-10-30 12:47:21,PART-DELTA,"{""source"": ""app"", ""device"": ""ios""}",89.99,2025-10-24T13:00:00Z,GBP
-BKG-0005,2025-10-23T11:00:00Z,2025-10-30 12:47:21,PART-EPSILON,"{""source"": ""api"", ""device"": ""backend""}",112.5,2025-10-23T11:30:00Z,EUR
-BKG-0006,2025-10-22T15:45:00Z,2025-10-30 12:47:21,PART-ZETA,"{""source"": ""web"", ""device"": ""mobile""}",580.0,2025-10-22T15:45:00Z,USD
-BKG-0007,2025-10-21T18:00:00Z,2025-10-30 12:47:21,PART-THETA,"{""source"": ""web"", ""device"": ""tablet""}",215.45,2025-10-21T18:30:00Z,EUR
-BKG-0008,2025-10-20T09:15:00Z,2025-10-30 12:47:21,PART-IOTA,"{""source"": ""app"", ""device"": ""android""}",63.0,2025-10-20T09:45:00Z,GBP
-BKG-0009,2025-10-19T10:00:00Z,2025-10-30 12:47:21,PART-KAPPA,"{""source"": ""api"", ""device"": ""backend""}",410.8,2025-10-19T10:00:00Z,USD
-BKG-0010,2025-10-18T11:11:00Z,2025-10-30 12:47:21,PART-LAMBDA,"{""source"": ""web"", ""device"": ""desktop""}",250.0,2025-10-18T11:11:00Z,EUR
+BKG-0001,2025-10-28T08:23:11Z,2025-10-30 14:40:51,PART-ALPHA,"{""source"": ""web"", ""device"": ""mobile""}",199.9,2025-10-28T09:00:00Z,EUR
+BKG-0002,2025-10-27T14:11:05Z,2025-10-30 14:40:51,PART-BETA,"{""source"": ""api"", ""device"": ""backend""}",45.0,2025-10-27T14:11:05Z,EUR
+BKG-0003,2025-10-25T09:30:00Z,2025-10-30 14:40:51,PART-GAMMA,"{""source"": ""web"", ""device"": ""desktop""}",320.75,2025-10-25T10:00:00Z,USD
+BKG-0004,2025-10-24T12:00:00Z,2025-10-30 14:40:51,PART-DELTA,"{""source"": ""app"", ""device"": ""ios""}",89.99,2025-10-24T13:00:00Z,GBP
+BKG-0005,2025-10-23T11:00:00Z,2025-10-30 14:40:51,PART-EPSILON,"{""source"": ""api"", ""device"": ""backend""}",112.5,2025-10-23T11:30:00Z,EUR
+BKG-0006,2025-10-22T15:45:00Z,2025-10-30 14:40:51,PART-ZETA,"{""source"": ""web"", ""device"": ""mobile""}",580.0,2025-10-22T15:45:00Z,USD
+BKG-0007,2025-10-21T18:00:00Z,2025-10-30 14:40:51,PART-THETA,"{""source"": ""web"", ""device"": ""tablet""}",215.45,2025-10-21T18:30:00Z,EUR
+BKG-0008,2025-10-20T09:15:00Z,2025-10-30 14:40:51,PART-IOTA,"{""source"": ""app"", ""device"": ""android""}",63.0,2025-10-20T09:45:00Z,GBP
+BKG-0009,2025-10-19T10:00:00Z,2025-10-30 14:40:51,PART-KAPPA,"{""source"": ""api"", ""device"": ""backend""}",410.8,2025-10-19T10:00:00Z,USD
+BKG-0010,2025-10-18T11:11:00Z,2025-10-30 14:40:51,PART-LAMBDA,"{""source"": ""web"", ""device"": ""desktop""}",250.0,2025-10-18T11:11:00Z,EUR

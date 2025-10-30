@@ -16,9 +16,15 @@ with source as (
         current_timestamp() as dwh_load_time
     from {{ ref('raw_bookings') }}
 
+
     {% if is_incremental() %}
-      -- only load new or updated records
-      where created_at > (select max(created_at) from {{ this }})
+      -- load only records that are new or updated since last load
+      where cast(created_at as timestamp) > (
+        select coalesce(max(created_at), timestamp('1900-01-01')) from {{ this }}
+      )
+      or cast(updated_at as timestamp) > (
+        select coalesce(max(updated_at), timestamp('1900-01-01')) from {{ this }}
+      )
     {% endif %}
 )
 

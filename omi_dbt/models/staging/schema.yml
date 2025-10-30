@@ -2,12 +2,12 @@ version: 2
 
 sources:
   - name: omio
-    schema: omio
+    schema: omio_stage
     tables:
-      - name: bookings
-      - name: passengers
-      - name: segments
-      - name: tickets
+      - name: stage_bookings
+      - name: stage_passengers
+      - name: stage_segments
+      - name: stage_tickets
 
 models:
   - name: raw_bookings

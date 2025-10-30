@@ -1,0 +1,6 @@
+age,bookingid,dwh_load_time,firstName,lastName,passengerid,type
+31,BKG-0011,2025-10-30 14:51:22,Laura,Beck,PAX-980,adult
+37,BKG-0012,2025-10-30 14:51:22,Marco,Silva,PAX-981,adult
+8,BKG-0013,2025-10-30 14:51:22,Noah,Miller,PAX-982,child
+29,BKG-0014,2025-10-30 14:51:22,Olivia,Klein,PAX-983,adult
+41,BKG-0015,2025-10-30 14:51:22,Paul,Ivanov,PAX-984,adult

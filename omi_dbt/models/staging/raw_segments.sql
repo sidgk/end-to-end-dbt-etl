@@ -13,4 +13,4 @@ SELECT
     travelmode,
     origin,
     destination
-FROM {{ source('omio', 'segments') }}
+FROM {{ source('omio', 'stage_segments') }}

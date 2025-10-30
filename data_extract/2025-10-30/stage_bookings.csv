@@ -1,0 +1,13 @@
+bookingid,createdAt,dwh_load_time,partnerIdOffer,raw_meta,status,totalPrice,updatedAt,userSelectedCurrency
+BKG-0011,2025-10-29T08:00:00Z,2025-10-30 14:51:22,PART-MU,"{""source"": ""web"", ""device"": ""desktop""}",confirmed,75.0,2025-10-29T09:00:00Z,EUR
+BKG-0012,2025-10-29T09:15:00Z,2025-10-30 14:51:22,PART-NU,"{""source"": ""app"", ""device"": ""ios""}",canceled,450.2,2025-10-29T09:45:00Z,USD
+BKG-0013,2025-10-28T17:30:00Z,2025-10-30 14:51:22,PART-OMEGA,"{""source"": ""api"", ""device"": ""backend""}",confirmed,,2025-10-28T18:00:00Z,GBP
+BKG-0014,2025-10-27T14:00:00Z,2025-10-30 14:51:22,PART-PI,"{""source"": ""web"", ""device"": ""mobile""}",pending,199.0,2025-10-27T14:10:00Z,
+BKG-0015,2025-10-26T07:45:00Z,2025-10-30 14:51:22,,"{""source"": ""app"", ""device"": ""android""}",confirmed,310.4,2025-10-26T08:15:00Z,EUR
+BKG-0016,2025-10-25T13:00:00Z,2025-10-30 14:51:22,PART-RHO,"{""source"": ""web"", ""device"": ""tablet""}",confirmed,120.0,2025-10-25T13:20:00Z,CHF
+BKG-0017,2025-10-24T10:30:00Z,2025-10-30 14:51:22,PART-SIGMA,"{""source"": ""api"", ""device"": ""backend""}",confirmed,85.5,2025-10-24T11:00:00Z,DKK
+BKG-0018,2025-10-23T16:10:00Z,2025-10-30 14:51:22,PART-TAU,"{""source"": ""app"", ""device"": ""ios""}",canceled,210.75,2025-10-23T16:40:00Z,EUR
+BKG-0019,2025-10-22T11:30:00Z,2025-10-30 14:51:22,PART-UPSILON,"{""source"": ""web"", ""device"": ""desktop""}",confirmed,410.1,2025-10-22T11:45:00Z,USD
+BKG-0020,2025-10-21T12:20:00Z,2025-10-30 14:51:22,PART-PHI,"{""source"": ""api"", ""device"": ""backend""}",pending,150.0,2025-10-21T12:40:00Z,SEK
+BKG-0020,2025-10-21T12:20:00Z,2025-10-30 14:51:22,PART-PHI,"{""source"": ""api"", ""device"": ""backend""}",pending,150.0,2025-10-21T12:40:00Z,SEK
+BKG-0012,2025-10-29T09:15:00Z,2025-10-30 14:51:22,PART-NU,"{""source"": ""app"", ""device"": ""ios""}",canceled,450.2,2025-10-29T09:45:00Z,USD

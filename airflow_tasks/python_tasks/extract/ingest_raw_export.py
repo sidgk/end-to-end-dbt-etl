@@ -126,10 +126,15 @@ def main():
     parser.add_argument("--upload-bq", action="store_true", help="Upload CSVs to BigQuery")
     parser.add_argument("--bq-project", help="BigQuery project ID")
     parser.add_argument("--bq-dataset", default="omio_raw", help="BigQuery dataset (default: omio_raw)")
+    parser.add_argument("--process-date", help="Date folder to process (YYYY-MM-DD)")
     args = parser.parse_args()
 
-    # use yesterday’s data
-    process_date = (date.today() - timedelta(days=1)).strftime("%Y-%m-%d")
+    # Determine process date (default: yesterday)
+    if args.process_date:
+        process_date = args.process_date
+    else:
+        process_date = (date.today() - timedelta(days=1)).strftime("%Y-%m-%d")
+
     dwh_load_time = datetime.utcnow().strftime("%Y-%m-%d %H:%M:%S")
 
     raw_folder = RAW_DATA_DIR / process_date
@@ -139,10 +144,10 @@ def main():
     logger.info(f"📅 Processing date: {process_date}")
     logger.info(f"🔍 Looking for JSON in: {raw_folder}")
 
-    # find JSON file
+    # Find JSON file
     json_files = list(raw_folder.glob("*.json"))
     if not json_files:
-        logger.error(f"No JSON files found in {raw_folder}")
+        logger.error(f"❌ No JSON files found in {raw_folder}")
         sys.exit(1)
 
     json_path = json_files[0]
@@ -162,7 +167,6 @@ def main():
             upload_to_bigquery(args.bq_project, args.bq_dataset, table_name, csv_path)
 
     logger.info(f"🎉 Ingestion for {process_date} completed successfully.")
-
 
 if __name__ == "__main__":
     main()
