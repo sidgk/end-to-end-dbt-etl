@@ -1,0 +1,96 @@
+version: 2
+
+sources:
+  - name: omio
+    schema: omio
+    tables:
+      - name: bookings
+      - name: passengers
+      - name: segments
+      - name: tickets
+
+models:
+  - name: raw_bookings
+    description: "Daily view of Omio bookings filtered for previous-day data."
+    columns:
+      - name: bookingid
+        description: "Unique identifier for each booking."
+        tests:
+          - unique
+          - not_null
+      - name: createdAt
+        description: "Timestamp when the booking was created."
+        tests:
+          - not_null
+      - name: updatedAt
+        description: "Timestamp when the booking was last updated."
+      - name: partnerIdOffer
+        description: "Partner ID for the offer linked to this booking."
+
+  - name: raw_segments
+    description: "Daily view of Omio travel segments (previous day)."
+    columns:
+      - name: segmentid
+        description: "Unique identifier for each segment."
+        tests:
+          - unique
+          - not_null
+      - name: bookingid
+        description: "Booking identifier associated with the segment."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('raw_bookings')
+              field: bookingid
+      - name: carriername
+        description: "Name of the travel carrier."
+      - name: departuredatetime
+        description: "Departure time of the segment."
+        tests:
+          - not_null
+      - name: arrivaldatetime
+        description: "Arrival time of the segment."
+
+  - name: raw_tickets
+    description: "Daily view of Omio tickets (previous day)."
+    columns:
+      - name: ticketid
+        description: "Unique identifier for each ticket."
+        tests:
+          - unique
+          - not_null
+      - name: bookingid
+        description: "Booking identifier linked to this ticket."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('raw_bookings')
+              field: bookingid
+      - name: bookingPrice
+        description: "Total booking price."
+      - name: bookingCurrency
+        description: "Currency used for this ticket booking."
+      - name: issuedAt
+        description: "Date and time when ticket was issued."
+        tests:
+          - not_null
+
+  - name: raw_passengers
+    description: "Daily view of Omio passengers (previous day)."
+    columns:
+      - name: passengerid
+        description: "Unique identifier for each passenger."
+        tests:
+          - unique
+          - not_null
+      - name: bookingid
+        description: "Booking ID linked to the passenger."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('raw_bookings')
+              field: bookingid
+      - name: type
+        description: "Passenger type (e.g., Adult, Child)."
+      - name: age
+        description: "Passenger age if available."

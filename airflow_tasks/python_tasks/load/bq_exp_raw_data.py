@@ -1,14 +1,14 @@
+# bq_exp_raw_data.py
 import json
 import pandas as pd
 from google.cloud import bigquery
 from google.api_core.exceptions import NotFound
 
-
 def main():
     # ---- CONFIG ----
     json_path = "/Users/siddaling.kattimani/Documents/CaseStudy/end-to-end-dbt-etl/sample_raw_export.json"
-    project_id = "inspiring-ring-382618"  # ⬅️ replace with your actual project ID
-    dataset_id = "omio"  # ⬅️ choose dataset name (will be auto-created)
+    project_id = "inspiring-ring-382618"
+    dataset_id = "omio_stage"  # ✅ new dataset for stage tables
 
     # ---- LOAD JSON ----
     with open(json_path, "r") as f:
@@ -39,9 +39,9 @@ def main():
 
     create_dataset_if_not_exists(client, project_id, dataset_id)
 
-    # ---- TABLE SCHEMAS ----
+    # ---- DEFINE TABLE SCHEMAS ----
     schemas = {
-        "bookings": [
+        "stage_bookings": [
             bigquery.SchemaField("bookingid", "STRING"),
             bigquery.SchemaField("createdAt", "TIMESTAMP"),
             bigquery.SchemaField("updatedAt", "TIMESTAMP"),
@@ -50,7 +50,7 @@ def main():
             bigquery.SchemaField("totalPrice", "FLOAT"),
             bigquery.SchemaField("raw_meta", "JSON"),
         ],
-        "segments": [
+        "stage_segments": [
             bigquery.SchemaField("segmentid", "STRING"),
             bigquery.SchemaField("bookingid", "STRING"),
             bigquery.SchemaField("carriername", "STRING"),
@@ -60,7 +60,7 @@ def main():
             bigquery.SchemaField("origin", "STRING"),
             bigquery.SchemaField("destination", "STRING"),
         ],
-        "passengers": [
+        "stage_passengers": [
             bigquery.SchemaField("passengerid", "STRING"),
             bigquery.SchemaField("bookingid", "STRING"),
             bigquery.SchemaField("type", "STRING"),
@@ -68,7 +68,7 @@ def main():
             bigquery.SchemaField("lastName", "STRING"),
             bigquery.SchemaField("age", "INTEGER"),
         ],
-        "tickets": [
+        "stage_tickets": [
             bigquery.SchemaField("ticketid", "STRING"),
             bigquery.SchemaField("bookingid", "STRING"),
             bigquery.SchemaField("bookingPrice", "FLOAT"),
@@ -77,11 +77,11 @@ def main():
             bigquery.SchemaField("issuedAt", "TIMESTAMP"),
             bigquery.SchemaField("fareClass", "STRING"),
         ],
-        "ticket_segment": [
+        "stage_ticket_segment": [
             bigquery.SchemaField("ticketId", "STRING"),
             bigquery.SchemaField("segmentId", "STRING"),
         ],
-        "ticket_passenger": [
+        "stage_ticket_passenger": [
             bigquery.SchemaField("ticketId", "STRING"),
             bigquery.SchemaField("passengerId", "STRING"),
         ],
@@ -110,16 +110,15 @@ def main():
         print(f"🚀 Loaded {len(df)} rows into {table_id}")
 
     # ---- UPLOAD ALL TABLES ----
-    load_to_bq(bookings_df, "bookings")
-    load_to_bq(segments_df, "segments")
-    load_to_bq(passengers_df, "passengers")
-    load_to_bq(tickets_df, "tickets")
-    load_to_bq(ticket_segment_df, "ticket_segment")
-    load_to_bq(ticket_passenger_df, "ticket_passenger")
+    load_to_bq(bookings_df, "stage_bookings")
+    load_to_bq(segments_df, "stage_segments")
+    load_to_bq(passengers_df, "stage_passengers")
+    load_to_bq(tickets_df, "stage_tickets")
+    load_to_bq(ticket_segment_df, "stage_ticket_segment")
+    load_to_bq(ticket_passenger_df, "stage_ticket_passenger")
 
-    print("\n🎉 All tables created and loaded successfully in BigQuery!")
+    print("\n🎉 All stage tables created and loaded successfully in BigQuery!")
 
-
-# ✅ Add this for Airflow safety
+# ✅ Add this for Airflow compatibility
 if __name__ == "__main__":
     main()
