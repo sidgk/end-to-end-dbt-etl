@@ -1,3 +1,5 @@
+-- model dim_bookings.sql
+-- Author: Siddu Kattimani
 {{ config(
     materialized='incremental',
     unique_key='booking_id',
@@ -8,22 +10,24 @@ with source as (
 
     select 
         booking_id,
-        created_at,
-        updated_at,
+        booking_created_at,
+        booking_updated_at,
         partner_id_offer,
         booking_price,
         booking_currency,
-        current_timestamp() as dwh_load_time
+        booking_status,
+        raw_meta,
+        {{ var('dwh_loaddatetime') }} AS dwh_loaddatetime
     from {{ ref('raw_bookings') }}
 
 
     {% if is_incremental() %}
       -- load only records that are new or updated since last load
       where cast(created_at as timestamp) > (
-        select coalesce(max(created_at), timestamp('1900-01-01')) from {{ this }}
+        select coalesce(max(booking_created_at), timestamp('1900-01-01')) from {{ this }}
       )
       or cast(updated_at as timestamp) > (
-        select coalesce(max(updated_at), timestamp('1900-01-01')) from {{ this }}
+        select coalesce(max(booking_updated_at), timestamp('1900-01-01')) from {{ this }}
       )
     {% endif %}
 )

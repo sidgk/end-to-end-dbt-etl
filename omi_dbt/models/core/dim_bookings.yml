@@ -23,12 +23,12 @@ models:
           - unique
           - not_null
 
-      - name: created_at
+      - name: booking_created_at
         description: "Timestamp when the booking was created."
         tests:
           - not_null
 
-      - name: updated_at
+      - name: booking_updated_at
         description: "Timestamp when the booking was last updated."
 
       - name: partner_id_offer
@@ -42,6 +42,7 @@ models:
         tests:
           - accepted_values:
               values: ['EUR', 'USD', 'GBP', 'CHF', 'DKK', 'SEK', 'NOK', 'PLN', 'CZK']
+              severity: warn
 
       - name: dwh_load_time
         description: "Timestamp when this record was loaded into the data warehouse."

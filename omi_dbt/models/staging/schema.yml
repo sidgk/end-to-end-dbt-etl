@@ -18,11 +18,11 @@ models:
         tests:
           - unique
           - not_null
-      - name: created_at
+      - name: booking_created_at
         description: "Timestamp when the booking was created."
         tests:
           - not_null
-      - name: updated_at
+      - name: booking_updated_at
         description: "Timestamp when the booking was last updated."
       - name: partner_id_offer
         description: "Partner ID for the offer linked to this booking."
@@ -30,6 +30,14 @@ models:
         description: "Currency chosen to make the booking."
       - name: booking_price
         description: "Total booking price."
+      - name: booking_status
+        description: "Current Status of the booking"
+        tests:
+          - accepted_values:
+              values: ['confirmed', 'pending', 'canceled']
+              severity: warn
+      - name: raw_meta
+        description: "contains the details on from which platform the specific booking came from."
 
   - name: raw_segments
     description: "Daily view of Omio travel segments (previous day)."

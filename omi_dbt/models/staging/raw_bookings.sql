@@ -1,20 +1,36 @@
--- models/staging/stg_bookings.sql
+-- model raw_booking.sql
+-- Author: Siddu Kattimani
+{{ config(
+    materialized='view',
+    tags = ['stage'],
+    enabled=true
+) }}
 WITH source AS(
 SELECT
     bookingid AS booking_id,
     totalPrice AS booking_price,
     userSelectedCurrency AS booking_currency,
-    status AS booking_status,
     partnerIdOffer AS partner_id_offer,
-    createdAt AS created_at,
-    updatedAt AS updated_at,
+    createdAt AS booking_created_at,
+    updatedAt AS booking_updated_at,
+    --  status and raw_meta are new fields adeed by Siddu
+    status AS booking_status,
     raw_meta,
+    {{ var('dwh_loaddatetime') }} AS dwh_loaddatetime,
     -- get the latest records only
     ROW_NUMBER() OVER (PARTITION BY bookingid ORDER BY createdat desc) AS rn
 FROM {{ source('omio', 'stage_bookings') }}
 )
 SELECT 
-    *
+    booking_id,
+    booking_price,
+    booking_currency,
+    partner_id_offer,
+    booking_created_at,
+    booking_updated_at,
+    booking_status,
+    raw_meta,
+    dwh_loaddatetime
 FROM
     source
 WHERE 
