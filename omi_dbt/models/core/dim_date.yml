@@ -1,0 +1,32 @@
+# models/core/dim_date.yml
+version: 2
+
+models:
+  - name: dim_date
+    description: "Date dimension containing all calendar dates from 2020 to 2028, used for time-based joins and analysis."
+    columns:
+      - name: date_day
+        description: "Unique date value."
+        tests:
+          - not_null
+          - unique
+      - name: year
+        description: "Year of the date."
+      - name: month_number
+        description: "Numeric month value (1-12)."
+      - name: month_name
+        description: "Name of the month (e.g., January)."
+      - name: day_of_month
+        description: "Day of the month (1-31)."
+      - name: quarter
+        description: "Quarter of the year (1-4)."
+      - name: week_of_year
+        description: "Week number within the year (1-53)."
+      - name: day_of_week_number
+        description: "Numeric day of week (1=Sunday, 7=Saturday)."
+      - name: day_of_week_name
+        description: "Day of the week name (e.g., Monday)."
+      - name: year_month
+        description: "Year and month combination (YYYY-MM)."
+      - name: full_date_string
+        description: "Full date in string format (YYYY-MM-DD)."

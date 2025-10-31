@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: bridge_ticket_segment
+    description: "Bridge table linking tickets to segments. A ticket can cover multiple segments (e.g., outbound + return)."
+    columns:
+      - name: ticket_id
+        description: "ID of the ticket."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_tickets')
+              field: ticket_id
+      - name: segment_id
+        description: "ID of the segment."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_segments')
+              field: segment_id

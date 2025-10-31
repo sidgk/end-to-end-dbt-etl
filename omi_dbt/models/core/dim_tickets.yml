@@ -1,0 +1,63 @@
+version: 2
+
+models:
+  - name: dim_tickets
+    description: >
+      Incremental dimension table containing ticket-level information.
+      Built on top of the raw_tickets staging model. Each record represents a unique ticket.
+    columns:
+      - name: ticket_id
+        description: Unique identifier for each ticket.
+        tests:
+          - not_null
+          - unique
+
+      - name: booking_id
+        description: Identifier that links the ticket to its corresponding booking.
+        tests:
+          - not_null:
+              severity: error
+          - relationships:
+              to: ref('dim_bookings')
+              field: booking_id
+              severity: error
+
+      - name: booking_price
+        description: The price of the booking associated with the ticket.
+        tests:
+          - not_null:
+              severity: warn
+          # - accepted_range:
+          #     min_value: 0
+          #     severity: error
+
+      - name: booking_currency
+        description: Currency in which the booking was made (e.g., EUR, USD).
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: vendor_code
+        description: The code representing the ticketing vendor.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: issued_at
+        description: Timestamp when the ticket was issued.
+        # tests:
+        #   - not_null:
+        #       severity: warn
+
+      - name: fare_class
+        description: >
+          The fare class or category for the ticket (e.g., Economy, Standard, Business).
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: dwh_loaddatetime
+        description: Timestamp when the record was loaded into the data warehouse.
+        tests:
+          - not_null:
+              severity: error

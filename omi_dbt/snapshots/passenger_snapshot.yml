@@ -1,0 +1,47 @@
+version: 2
+
+snapshots:
+  - name: passenger_snapshot
+    description: >
+      Snapshot to track historical changes in passenger information over time.
+      Implements a Type 2 Slowly Changing Dimension (SCD Type 2) strategy based on 
+      the `dwh_loaddatetime` field, which reflects when data was loaded into the warehouse.
+    config:
+      target_schema: snapshots
+      unique_key: passenger_id
+      strategy: timestamp
+      updated_at: dwh_loaddatetime
+      invalidate_hard_deletes: true
+
+    columns:
+      - name: passenger_id
+        description: Unique identifier for the passenger.
+        tests:
+          - not_null
+          - unique
+
+      - name: booking_id
+        description: Identifier for the booking related to the passenger.
+
+      - name: first_name
+        description: Passenger’s first name (title-cased for consistency).
+
+      - name: last_name
+        description: Passenger’s last name (title-cased for consistency).
+
+      - name: passenger_type
+        description: Indicates whether the passenger is an adult, child, etc.
+
+      - name: age
+        description: Passenger’s age at the time of booking (can change if rebooked later).
+
+      - name: dwh_loaddatetime
+        description: Timestamp when this passenger record was loaded into the warehouse.
+        tests:
+          - not_null
+
+      - name: dbt_valid_from
+        description: Timestamp when this version of the record became active.
+
+      - name: dbt_valid_to
+        description: Timestamp when this version of the record was superseded (null if current).

@@ -1,0 +1,60 @@
+version: 2
+
+snapshots:
+  - name: booking_status_snapshot
+    description: >
+      Snapshot tracking the historical changes in booking status over time.
+      This implements a Type 2 Slowly Changing Dimension (SCD Type 2) pattern 
+      using the timestamp strategy based on the `booking_updated_at` column.
+      Each time a booking’s status changes, a new record version is created.
+    config:
+      target_schema: snapshots
+      unique_key: booking_id
+      strategy: timestamp
+      updated_at: booking_updated_at
+      invalidate_hard_deletes: true
+
+    columns:
+      - name: booking_id
+        description: Unique identifier for each booking.
+        tests:
+          - not_null
+          - unique
+
+      - name: partner_id_offer
+        description: Identifier for the partner associated with the booking.
+
+      - name: booking_price
+        description: The total price of the booking.
+        # tests:
+        #   - not_null
+
+      - name: booking_currency
+        description: Currency in which the booking was made.
+
+      - name: booking_status
+        description: >
+          Current status of the booking (e.g., Pending, Confirmed, Cancelled).
+          Used for tracking booking lifecycle transitions.
+        # tests:
+        #   - accepted_values:
+        #       values: ['Pending', 'Confirmed', 'Cancelled']
+        #       config:
+        #         severity: warn
+
+      - name: booking_created_at
+        description: Timestamp when the booking was initially created.
+
+      - name: booking_updated_at
+        description: Timestamp when the booking was last updated.
+        tests:
+          - not_null
+
+      - name: dwh_load_time
+        description: Timestamp indicating when the record was loaded into the data warehouse.
+
+      - name: dbt_valid_from
+        description: Timestamp when this snapshot version became valid.
+      
+      - name: dbt_valid_to
+        description: Timestamp when this snapshot version was superseded (null for current version).

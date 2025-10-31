@@ -1,0 +1,22 @@
+version: 2
+
+models:
+  - name: fact_bookings_monthly
+    description: >
+      Monthly summary table that aggregates bookings, tickets, and passengers,
+      ensuring that every calendar date is represented using dim_date, even when
+      no booking occurred on that date.
+
+    columns:
+      - name: date
+        description: Month of the aggregated booking activity.
+      - name: total_bookings
+        description: Total number of bookings in the month.
+      - name: total_tickets_sold
+        description: Total number of tickets sold in the month.
+      - name: total_passengers
+        description: Total number of distinct passengers who booked that month.
+      - name: total_booking_value
+        description: Sum of all booking prices for that month.
+      - name: avg_booking_value
+        description: Average booking value across all bookings for that month.

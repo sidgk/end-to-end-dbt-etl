@@ -1,0 +1,62 @@
+version: 2
+
+models:
+  - name: dim_passengers
+    description: >
+      Incremental dimension model containing cleaned and deduplicated passenger-level data.
+      Each record represents one passenger per booking.
+
+    columns:
+      - name: passenger_id
+        description: Unique identifier for the passenger.
+        tests:
+          - not_null:
+              severity: error
+          - unique
+
+      - name: booking_id
+        description: Foreign key linking the passenger to the booking.
+        tests:
+          - not_null:
+              severity: error
+          - relationships:
+              arguments:
+                to: ref('dim_bookings')
+                field: booking_id
+              severity: error
+
+      - name: first_name
+        description: Passenger first name.
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: last_name
+        description: Passenger last name.
+
+      - name: passenger_type
+        description: Type of passenger (e.g., Adult, Child, Infant).
+        tests:
+          - not_null:
+              severity: warn
+          - accepted_values:
+              arguments:
+                values: ['Adult', 'Child', 'Infant']
+              severity: warn
+
+      - name: age
+        description: Age of the passenger.
+        tests:
+          - not_null:
+              severity: warn
+          # - accepted_range:
+          #     arguments:
+          #       min_value: 0
+          #       max_value: 120
+          #     severity: error
+
+      - name: dwh_loaddatetime
+        description: Timestamp when the record was loaded into the DWH.
+        tests:
+          - not_null:
+              severity: error

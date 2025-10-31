@@ -29,3 +29,10 @@ models:
     core:
       +schema: core
       +materialized: table
+
+snapshots:
+  your_project_name:
+    +schema: snapshots
+    +materialized: snapshot
+    +file: "snapshots"
+

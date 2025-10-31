@@ -1,0 +1,32 @@
+version: 2
+
+snapshots:
+  - name: currency_snapshot
+    description: >
+      Snapshot of daily currency exchange rates to EUR.
+      Tracks historical changes in currency conversion rates over time
+      using SCD Type 2 logic with `dbt_valid_from` and `dbt_valid_to`.
+      Used to convert booking and revenue amounts into a consistent EUR value.
+    meta:
+      owner: Siddu Kattimani
+      layer: snapshot
+    config:
+      target_schema: omio_snapshots
+      unique_key: currency_code
+      strategy: timestamp
+      updated_at: date
+    columns:
+      - name: currency_code
+        description: "3-letter ISO currency code, e.g. EUR, USD, GBP."
+      - name: date
+        description: "Date for which the exchange rate applies."
+      - name: rate_to_eur
+        description: "Exchange rate value representing 1 unit of this currency in EUR."
+      - name: dbt_valid_from
+        description: "Timestamp when this rate version became valid."
+      - name: dbt_valid_to
+        description: "Timestamp when this rate version was superseded by a new value."
+      - name: dbt_scd_id
+        description: "Unique identifier for each snapshot record."
+      - name: dbt_updated_at
+        description: "Timestamp when dbt last detected a change in the record."

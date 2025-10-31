@@ -8,6 +8,7 @@ sources:
       - name: stage_passengers
       - name: stage_segments
       - name: stage_tickets
+      - name: stage_currency
 
 models:
   - name: raw_bookings
@@ -106,3 +107,13 @@ models:
         description: "Passenger type (e.g., Adult, Child)."
       - name: age
         description: "Passenger age if available."
+  
+  - name: raw_currency
+    description: "Daily currency exchange rates relative to EUR"
+    columns:
+      - name: date
+        description: "Date when the rate was recorded"
+      - name: currency_code
+        description: "3-letter ISO currency code (e.g. USD, GBP, CHF)"
+      - name: rate_to_eur
+        description: "Exchange rate against Euro"

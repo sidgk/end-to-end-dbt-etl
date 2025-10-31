@@ -1,0 +1,31 @@
+version: 2
+
+models:
+  - name: fact_booking
+    description: "Fact table capturing booking-level metrics, enriched with counts of tickets, segments, and passengers."
+    columns:
+      - name: booking_id
+        description: "Unique identifier for each booking."
+        tests:
+          - not_null
+          - unique
+      - name: booking_date
+        description: "Date the booking was made."
+        tests:
+          - not_null
+      - name: booking_status
+        description: "Current status of the booking (e.g., completed, canceled)."
+      - name: booking_price
+        description: "Total amount paid for the booking."
+        tests:
+          - not_null
+      - name: ticket_count
+        description: "Number of tickets associated with this booking."
+      - name: segment_count_per_booking
+        description: "Number of travel segments per booking."
+      - name: passenger_count
+        description: "Number of passengers associated with this booking."
+      - name: dwh_loaddatetime
+        description: "Data warehouse load timestamp of this model."
+        tests:
+          - not_null

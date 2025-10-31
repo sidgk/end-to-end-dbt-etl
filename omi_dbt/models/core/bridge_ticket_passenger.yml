@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: bridge_ticket_passenger
+    description: "Bridge table linking tickets to passengers. Represents the receipt-like mapping between passengers and tickets."
+    columns:
+      - name: ticket_id
+        description: "ID of the ticket."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_tickets')
+              field: ticket_id
+      - name: passenger_id
+        description: "ID of the passenger."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_passengers')
+              field: passenger_id

@@ -1,0 +1,61 @@
+version: 2
+
+models:
+  - name: dim_segments
+    description: >
+      Dimension table representing individual travel segments (legs) within a booking.
+      Each record corresponds to one leg of a journey, such as a flight, train, or bus ride
+      from one city to another.
+
+    columns:
+      - name: segment_id
+        description: "Unique identifier for the travel segment (leg of a booking)."
+        tests:
+          - unique
+          - not_null
+
+      - name: booking_id
+        description: "Foreign key referencing the parent booking record."
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_bookings')
+              field: booking_id
+
+      - name: carrier_name
+        description: "Name of the transport operator (e.g., airline, train company, bus operator)."
+        tests:
+          - not_null:
+              severity: warn
+
+      - name: departure_date_time
+        description: "Timestamp representing when the segment departs."
+        tests:
+          - not_null:
+              severity: error
+
+
+      - name: arrival_date_time
+        description: "Timestamp representing when the segment arrives."
+        tests:
+          - not_null:
+              severity: error
+
+      - name: travel_mode
+        description: "Type of transportation for this segment (flight, train, bus, etc.)."
+        tests:
+          - not_null
+          - accepted_values:
+              values: ['flight', 'train', 'bus', 'ferry']
+              severity: warn
+
+      - name: origin
+        description: "Departure location code (e.g., airport or station code)."
+
+      - name: destination
+        description: "Arrival location code (e.g., airport or station code)."
+
+      - name: dwh_loaddatetime
+        description: "Timestamp indicating when the record was loaded into the warehouse."
+        tests:
+          - not_null
