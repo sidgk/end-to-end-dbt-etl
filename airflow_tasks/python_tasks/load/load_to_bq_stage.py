@@ -7,7 +7,7 @@ Purpose:
   Overwrites each table daily with the latest CSV data.
 
 Usage:
-  python load_to_bq_stage.py --bq-project inspiring-ring-382618 --bq-dataset omio_stage
+  python load_to_bq_stage.py --bq-project project_name --bq-dataset omio_stage
   python load_to_bq_stage.py --process-date 2025-10-29
 """
 

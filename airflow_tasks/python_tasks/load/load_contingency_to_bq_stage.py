@@ -7,7 +7,7 @@ Purpose:
   into BigQuery stage tables. Each run overwrites existing stage tables.
 
 Example usage:
-  python load_contingency_to_bq_stage.py --bq-project inspiring-ring-382618 --bq-dataset omio_stage
+  python load_contingency_to_bq_stage.py --bq-project project_name --bq-dataset omio_stage
   python load_contingency_to_bq_stage.py --folder "2025-10-30 19:15:59 UTC"
 """
 

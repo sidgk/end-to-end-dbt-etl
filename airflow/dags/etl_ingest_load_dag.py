@@ -41,7 +41,7 @@ with DAG(
         task_id="load_to_bq_stage",
         bash_command=(
             f"python {PYTHON_TASKS}/load/load_to_bq_stage.py "
-            f"--bq-project inspiring-ring-382618 "
+            f"--bq-project project_name "
             f"--bq-dataset omio_stage "
             f"--process-date {{ ds }} "
         ),

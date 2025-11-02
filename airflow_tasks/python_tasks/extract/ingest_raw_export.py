@@ -11,7 +11,7 @@ Purpose:
 
 Usage:
   python ingest_raw_export.py
-  python ingest_raw_export.py --upload-bq --bq-project inspiring-ring-382618 --bq-dataset omio_raw
+  python ingest_raw_export.py 
 """
 
 import os
@@ -35,10 +35,6 @@ except Exception:
     bigquery = None
 
 
-# -----------------------------------
-# CONFIGURATION
-# -----------------------------------
-
 BASE_PATH = Path("/Users/siddaling.kattimani/Documents/CaseStudy/end-to-end-dbt-etl")
 RAW_DATA_DIR = BASE_PATH / "raw_data"
 DATA_EXTRACT_BASE_DIR = BASE_PATH / "data_extract"
@@ -55,10 +51,7 @@ TABLE_MAP = {
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
-
-# -----------------------------------
 # HELPER FUNCTIONS
-# -----------------------------------
 
 def read_json(path: Path):
     with open(path, "r", encoding="utf-8") as f:
@@ -115,11 +108,6 @@ def upload_to_bigquery(project_id, dataset_id, table_id, csv_path):
         job = client.load_table_from_file(f, table_ref, job_config=job_config)
     job.result()
     logger.info(f"✅ Loaded {job.output_rows} rows into {table_ref}")
-
-
-# -----------------------------------
-# MAIN SCRIPT
-# -----------------------------------
 
 def main():
     parser = argparse.ArgumentParser()

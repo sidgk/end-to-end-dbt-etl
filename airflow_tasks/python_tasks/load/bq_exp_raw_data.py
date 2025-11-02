@@ -7,7 +7,7 @@ from google.api_core.exceptions import NotFound
 def main():
     # ---- CONFIG ----
     json_path = "/Users/siddaling.kattimani/Documents/CaseStudy/end-to-end-dbt-etl/sample_raw_export.json"
-    project_id = "inspiring-ring-382618"
+    project_id = "project_name"
     dataset_id = "omio_stage"  # ✅ new dataset for stage tables
 
     # ---- LOAD JSON ----

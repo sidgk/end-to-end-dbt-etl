@@ -9,7 +9,7 @@ import time
 def main():
     from google.cloud import bigquery  # Lazy import
 
-    client = bigquery.Client(project="inspiring-ring-382618")
+    client = bigquery.Client(project="project_name")
     dataset_id = "omio"
 
     tables = [
@@ -44,7 +44,7 @@ if __name__ == "__main__":
 # # --------------------------
 # # Configuration
 # # --------------------------
-# PROJECT_ID = "inspiring-ring-382618"  # 🔁 replace with your actual project id
+# PROJECT_ID = "project_name"  # 🔁 replace with your actual project id
 # DATASET_ID = "omio"
 # JSON_FILE = "/Users/siddaling.kattimani/Documents/CaseStudy/end-to-end-dbt-etl/sample_raw_export.json"
 

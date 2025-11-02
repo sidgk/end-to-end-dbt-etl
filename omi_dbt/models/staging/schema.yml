@@ -41,7 +41,7 @@ models:
         description: "contains the details on from which platform the specific booking came from."
 
   - name: raw_segments
-    description: "Daily view of Omio travel segments (previous day)."
+    description: "Daily view of Omio travel segments (previous day) associated with a booking."
     columns:
       - name: segment_id
         description: "Unique identifier for each segment."
@@ -49,7 +49,7 @@ models:
           - unique
           - not_null
       - name: booking_id
-        description: "Booking identifier associated with the segment."
+        description: "Booking identifier, segment is associated with the booking. A booking can have one or more segment"
         tests:
           - not_null
           - relationships:
@@ -65,7 +65,7 @@ models:
         description: "Arrival time of the segment."
 
   - name: raw_tickets
-    description: "Daily view of Omio tickets (previous day)."
+    description: "A ticket represents an individual travel document issued for a passenger within a booking."
     columns:
       - name: ticket_id
         description: "Unique identifier for each ticket."
