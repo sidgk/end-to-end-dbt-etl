@@ -14,7 +14,8 @@ if TASKS_PATH not in sys.path:
 default_args = {
     'owner': 'airflow',
     'start_date': datetime(2025, 10, 1),
-    'retries': 1,
+    'retries': 3,
+    'retry_delay': timedelta(minutes=3)
 }
 
 def run_bq_loader():
@@ -28,7 +29,7 @@ def run_bq_explicit_loader():
     bq_exp_raw_data.main()
 
 with DAG(
-    dag_id='load_to_bq_dag',
+    dag_id='load_to_bq',
     default_args=default_args,
     schedule_interval=None,
     catchup=False,

@@ -17,12 +17,13 @@ default_args = {
     'owner': 'siddu',
     'depends_on_past': False,
     'start_date': datetime(2025, 10, 1),
-    'retries': 0,
+    'retries': 2,
+    'retry_delay': timedelta(minutes=3)
 }
 
 # Define the DAG
 with DAG(
-    dag_id='contingency_full_extract_dag',
+    dag_id='dwh_contingency_full_refresh_extract',
     default_args=default_args,
     schedule_interval=None,  # Run manually only
     catchup=False,

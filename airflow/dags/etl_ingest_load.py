@@ -9,7 +9,7 @@ default_args = {
     "email_on_failure": False,
     "email_on_retry": False,
     "retries": 1,
-    "retry_delay": timedelta(minutes=5),
+    "retry_delay": timedelta(minutes=5)
 }
 
 # Define your base paths
@@ -18,16 +18,16 @@ PYTHON_TASKS = f"{BASE_PATH}/airflow_tasks/python_tasks"
 
 # DAG definition
 with DAG(
-    dag_id='etl_ingest_load_dag',
+    dag_id='etl_ingest_load',
     default_args=default_args,
     description='End-to-end ETL pipeline: Ingest raw JSON and load to BigQuery stage',
-    schedule_interval='0 4 * * *',  # ⏰ Every day at 04:00 AM
+    schedule_interval='0 2 * * *',  # Every day at 02:00 AM
     start_date=datetime(2024, 1, 1),
     catchup=False,
     tags=['etl', 'bq', 'raw_ingest'],
 ) as dag:
 
-    # 1️⃣ Extract task — run ingest_raw_export.py
+    # 1 Extract task — run ingest_raw_export.py
     extract_raw = BashOperator(
         task_id="extract_raw_data",
         bash_command=(
@@ -36,7 +36,7 @@ with DAG(
         ),
     )
 
-    # 2️⃣ Load task — run load_to_bq_stage.py
+    # 2 Load task — run load_to_bq_stage.py
     load_to_bq_stage = BashOperator(
         task_id="load_to_bq_stage",
         bash_command=(

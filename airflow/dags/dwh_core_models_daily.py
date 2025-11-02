@@ -6,13 +6,14 @@ from datetime import datetime
 default_args = {
     'owner': 'siddu',
     'retries': 1,
+    'retry_delay': timedelta(minutes=3),
     'start_date': datetime(2025, 10, 29)
 }
 
 DBT_PROJECT_DIR = '/Users/siddaling.kattimani/Documents/CaseStudy/end-to-end-dbt-etl'
 
 with DAG(
-    dag_id='dbt_core_models_dag',
+    dag_id='dwh_core_models_daily',
     default_args=default_args,
     schedule_interval='0 7 * * *',  # 7:00 AM
     catchup=False,
