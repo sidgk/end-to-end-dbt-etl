@@ -1,6 +1,6 @@
-# 🚆 Omio Data Engineering Case Study
+# 🚆 Omio Analytics Engineer Case Study
 **Author:** Siddu Kattimani  
-**Tools:** Python, Airflow, dbt (BigQuery), SQL, Git  
+**Tools:** Python, Airflow, dbt (BigQuery), SQL, Git, Miro, dbdaigram.io, ChatGpt(for documentation)  
 **Purpose:** End-to-end design and implementation of a modern data pipeline and analytics model for a multimodal travel platform.
 
 ## 🧭 Overview
