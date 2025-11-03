@@ -75,6 +75,9 @@ The pipeline is fully automated through **Airflow DAGs**, transformations are de
 - `passenger_snapshot`
 - `currency_snapshot`
 
+**Lineage Graph of booking_snapshot**
+<img width="1465" height="781" alt="image" src="https://github.com/user-attachments/assets/58c7edfe-35c2-4280-8a85-166cbd7d2e0a" />
+
 **Purpose**
 
 - Track historical changes in key entities:
@@ -114,6 +117,8 @@ This ensures all financial KPIs are comparable and consistent across regions.
     - Total passengers
     - Total & average booking value
 - Used by stakeholders for trend and performance dashboards.
+
+**FYI: I have not added surrogate key to any models in this case study, I just relied on primary keys, I strongly see the usecase to add them, example in intermidate/bridge models** 
 
 ### ✅ 6. Data Quality Testing
 **Technical Tests (schema.yml)**
