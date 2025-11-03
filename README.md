@@ -51,6 +51,14 @@ The pipeline is fully automated through **Airflow DAGs**, transformations are de
   - Dimensions: **Incremental**
   - Fact: Can be materialised as **Table or Incremental**, depending upon the use case. In this case study I recommend using incremental approach with the **pre_hook** .
 
+**This is how the Lineage Graph looks for fact tables:**
+**fact_booking**
+<img width="1476" height="803" alt="image" src="https://github.com/user-attachments/assets/1dd29bc7-d3d1-45d7-83df-3c8169cccb5d" />
+
+**Data Mart:*
+<img width="1465" height="775" alt="image" src="https://github.com/user-attachments/assets/d638ac3f-9d12-4351-ab82-9cfe7679c9cf" />
+
+
 ### 🔹 Intermediate Models (`models/intermediate`)
 - Prefixed as `bridge_`, or `int_ e.g., `bridge_ticket_passenger.sql`
 - Handle intermediate transformations, joins, or data enrichment between staging and core models.
