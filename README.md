@@ -33,6 +33,10 @@ The pipeline is fully automated through **Airflow DAGs**, transformations are de
 
 ## 🧱 2. Data Modeling with dbt
 
+### 🌟 Star Schema Design
+
+<img width="1488" height="791" alt="image" src="https://github.com/user-attachments/assets/c6779f64-38f3-44ea-8028-a3d76ed45437" />
+
 ### 🔹 Staging Models (`models/staging`)
 - Models prefixed with `raw_` (e.g., `raw_bookings.sql`, `raw_segments.sql`).
 - Purpose:
@@ -63,9 +67,6 @@ The pipeline is fully automated through **Airflow DAGs**, transformations are de
 - Prefixed as `bridge_`, or `int_ e.g., `bridge_ticket_passenger.sql`
 - Handle intermediate transformations, joins, or data enrichment between staging and core models.
 
-### 🌟 Star Schema Design
-
-<img width="1488" height="791" alt="image" src="https://github.com/user-attachments/assets/c6779f64-38f3-44ea-8028-a3d76ed45437" />
 
 ### 💾 3 Snapshots (Slowly Changing Dimensions)
 **Snapshots Implemented**
